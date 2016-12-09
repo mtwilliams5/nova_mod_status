@@ -120,6 +120,102 @@
 					<?php echo form_radio($inputs['shield_image_granular_off']) .' '. form_label($label['no'], 'shield_image_granular_off');?>
 				</p><br />
                 <?php if ($inputs['shield_image_granular_on']['checked']) { ?>
+                <div id="shields_ventral">
+					<table class="table50">
+						<tr>
+							<td class="col_30pct slider_control UITheme">
+								<strong><?php echo $label['ventral'];?>:</strong>
+								<span id="shields_ventral_amount"><?php echo $shields['ventral'];?></span>
+								<input type="hidden" name="shields_ventral_percent" id="shields_ventral_percent" value="<?php echo $shields['ventral'];?>" />
+							</td>
+                        </tr>
+                        <tr>
+                            <td class="slider_control UITheme">
+                                <div id="shields_ventral" class="slider"><?php echo $shields['ventral'];?></div>
+                            </td>
+						</tr>
+                    </table>
+                </div>
+                <div id="shields_dorsal">
+					<table class="table50">
+						<tr>
+							<td class="col_30pct slider_control UITheme">
+								<strong><?php echo $label['dorsal'];?>:</strong>
+								<span id="shields_dorsal_amount"><?php echo $shields['dorsal'];?></span>
+								<input type="hidden" name="shields_dorsal_percent" id="shields_dorsal_percent" value="<?php echo $shields['dorsal'];?>" />
+							</td>
+                        </tr>
+                        <tr>
+                            <td class="slider_control UITheme">
+                                <div id="shields_dorsal" class="slider"><?php echo $shields['dorsal'];?></div>
+                            </td>
+						</tr>
+                    </table>
+                </div>
+                <div id="shields_port">
+					<table class="table50">
+						<tr>
+							<td class="col_30pct slider_control UITheme">
+								<strong><?php echo $label['port'];?>:</strong>
+								<span id="shields_port_amount"><?php echo $shields['port'];?></span>
+								<input type="hidden" name="shields_port_percent" id="shields_port_percent" value="<?php echo $shields['port'];?>" />
+							</td>
+                        </tr>
+                        <tr>
+                            <td class="slider_control UITheme">
+                                <div id="shields_port" class="slider"><?php echo $shields['port'];?></div>
+                            </td>
+						</tr>
+                    </table>
+                </div>
+                <div id="shields_starboard">
+					<table class="table50">
+						<tr>
+							<td class="col_30pct slider_control UITheme">
+								<strong><?php echo $label['starboard'];?>:</strong>
+								<span id="shields_starboard_amount"><?php echo $shields['starboard'];?></span>
+								<input type="hidden" name="shields_starboard_percent" id="shields_starboard_percent" value="<?php echo $shields['starboard'];?>" />
+							</td>
+                        </tr>
+                        <tr>
+                            <td class="slider_control UITheme">
+                                <div id="shields_starboard" class="slider"><?php echo $shields['starboard'];?></div>
+                            </td>
+						</tr>
+                    </table>
+                </div>
+                <div id="shields_fore">
+					<table class="table50">
+						<tr>
+							<td class="col_30pct slider_control UITheme">
+								<strong><?php echo $label['fore'];?>:</strong>
+								<span id="shields_fore_amount"><?php echo $shields['fore'];?></span>
+								<input type="hidden" name="shields_fore_percent" id="shields_fore_percent" value="<?php echo $shields['fore'];?>" />
+							</td>
+                        </tr>
+                        <tr>
+                            <td class="slider_control UITheme">
+                                <div id="shields_fore" class="slider"><?php echo $shields['fore'];?></div>
+                            </td>
+						</tr>
+                    </table>
+                </div>
+                <div id="shields_aft">
+					<table class="table50">
+						<tr>
+							<td class="col_30pct slider_control UITheme">
+								<strong><?php echo $label['aft'];?>:</strong>
+								<span id="shields_aft_amount"><?php echo $shields['aft'];?></span>
+								<input type="hidden" name="shields_aft_percent" id="shields_aft_percent" value="<?php echo $shields['aft'];?>" />
+							</td>
+                        </tr>
+                        <tr>
+                            <td class="slider_control UITheme">
+                                <div id="shields_aft" class="slider"><?php echo $shields['aft'];?></div>
+                            </td>
+						</tr>
+                    </table>
+                </div>
                 <?php } else { ?>
                     <p>
                         <kbd><?php echo $label['shield_image'];?></kbd>

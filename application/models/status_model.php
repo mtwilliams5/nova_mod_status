@@ -1,7 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Nova_status_model extends CI_Model {
-class Status_model extends Nova_status_model {
+class Status_model extends CI_Model {
 
 	public function __construct()
 	{
@@ -117,5 +116,4 @@ class Status_model extends Nova_status_model {
 		
 		return $prefs;
 	}
-}
 }

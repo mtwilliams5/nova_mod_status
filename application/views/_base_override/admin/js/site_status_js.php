@@ -17,8 +17,6 @@
 		$('#tabs').tabs();
 		$('#tabs').tabs('select', <?php echo $tab;?>);
 		
-		$('table.zebra tbody > tr:nth-child(odd)').addClass('alt');
-		
 		$('.slider_control > .slider').each(function() {
 			var value = parseInt($(this).text());
 			var id = parseInt($(this).attr('id'));
@@ -29,9 +27,10 @@
 				value: value,
 				min: 0,
 				max: 100,
+				step: 10,
 				slide: function(event, ui) {
 					$('#' + parseInt(ui.handle.parentNode.id) + '_amount').html(ui.value);
-					$('#' + parseInt(ui.handle.parentNode.id) + '_open').val(ui.value);
+					$('#' + parseInt(ui.handle.parentNode.id) + '_percent').val(ui.value);
 				}
 			});
 		});

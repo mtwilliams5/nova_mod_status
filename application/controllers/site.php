@@ -605,6 +605,14 @@ class Site extends Nova_site {
 					'offline' => ucwords('offline')
 			);
 			$data['default']['shield_image'] = $status['shield_image'];
+			
+			$data['shields']['ventral'] = $status['ventral'];
+			$data['shields']['dorsal'] = $status['dorsal'];
+			$data['shields']['port'] = $status['port'];
+			$data['shields']['starboard'] = $status['starboard'];
+			$data['shields']['fore'] = $status['fore'];
+			$data['shields']['aft'] = $status['aft'];
+				
 		
 		$data['header'] = ucwords(lang('global_sim') .' '. lang('labels_status'));
 		
