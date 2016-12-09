@@ -1,16 +1,13 @@
 <?php
-// Load the model
-	$this->load->model('settings_model', 'settings');
-
 // Let's get the type of sim it is
-	$simtype = $this->settings->get_sim_type();
+	$simtype = $this->status_model->get_sim_type();
 	
 // Let's get the field data for the ship status
-	$ship_fields = $this->settings->get_status_fields('ship');
+	$ship_fields = $this->status_model->get_status_fields('ship');
 	extract($ship_fields);
 	
 // Let's get the prefs data for the ship status
-	$ship_prefs = $this->settings->get_status_prefs('ship');
+	$ship_prefs = $this->status_model->get_status_prefs('ship');
 	extract($ship_prefs);
 
 /* Set the colors for the granular shield borders */

@@ -1,13 +1,10 @@
 <?php
-// Load the model
-	$this->load->model('settings_model', 'settings');
-	
 // Let's get the field data for the mission status
-	$mission_fields = $this->settings->get_status_fields('mission');
+	$mission_fields = $this->status_model->get_status_fields('mission');
 	extract($mission_fields);
 	
 // Let's get the prefs data for the ship status
-	$mission_prefs = $this->settings->get_status_prefs('mission');
+	$mission_prefs = $this->status_model->get_status_prefs('mission');
 	extract($mission_prefs);
 
 //Let's get the latest mission post

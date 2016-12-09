@@ -16,7 +16,7 @@ class Status_model extends CI_Model {
 			$q = $this->db->get_where('status_fields', array('status_key' => $field));
 			$r = ($q->num_rows() > 0) ? $q->row() : false;
 
-			$field = ($r !== false) ? $r->field_id : false;
+			$field = ($r !== false) ? $r->status_id : false;
 		}
 
 		$this->db->from('status_fields');
@@ -115,5 +115,17 @@ class Status_model extends CI_Model {
 		}
 		
 		return $prefs;
+	}
+	
+	public function get_sim_type($id = 2)
+	{
+		$this->db->from('sim_type');
+		$this->db->where('simtype_id', $id);
+		
+		$query = $this->db->get();
+		
+		$row = $query->row();
+		
+		return $row->simtype_name;
 	}
 }
