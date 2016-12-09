@@ -1,31 +1,19 @@
 <?php
-// Let's create some phantom variables to play about with for now
-	$shield_image_format = 'granular';
-	$shield_top_image = 'off';
-	$shield_side_image = 'off';
-	$location = 'Sector 001';
-	$speed = 'Warp 6';
-	$shields = 'Lowered';
-	$hull = 'Breached on Deck 15';
-	$systems = 'Compromised';
-	
-	$ventral = '100'; //bottom
-	$dorsal = '50'; //top
-	$port = '0'; //left
-	$starboard = '50'; //right
-	$fore = '25'; //front
-	$aft = '100'; //back
-	
-// these phantom variables are to control what data is shown in the front view
-	$show_shield_top_image = true;
-	$show_shield_side_image = false;
-	$show_location = true;
-	$show_speed = true;
-	$show_shields = true;
-	$show_hull = true;
-	$show_systems = true;
+// Load the model
+	$this->load->model('settings_model', 'settings');
 
-/* colors for the shield borders */
+// Let's get the type of sim it is
+	$simtype = $this->settings->get_sim_type();
+	
+// Let's get the field data for the ship status
+	$ship_fields = $this->settings->get_status_fields('ship');
+	extract($ship_fields);
+	
+// Let's get the prefs data for the ship status
+	$ship_prefs = $this->settings->get_status_prefs('ship');
+	extract($ship_prefs);
+
+/* Set the colors for the granular shield borders */
 	  $p0 = '#c86265';
 	 $p10 = '#cc715e';
 	 $p20 = '#d38952';
@@ -132,14 +120,14 @@
 	if ($aft == '100') { $aft = $p100; }
 
 
-/* Set some place-holder style information */
+/* Set some style information */
 ?>
 <style>
 .ship-status {
 	text-align: center;
 }
 
-<?php if ($shields !== 'off' && $shield_image_format == 'granular')
+<?php if ($shield_image !== 'off' && $shield_image_granular == true)
 {?>
 	.ship-status .top {
 		margin-top: .5em;
@@ -159,9 +147,9 @@
 		border-bottom-color: <?php echo $ventral; ?>;
 		border-left-color: <?php echo $fore; ?>;
 		border-right-color: <?php echo $aft; ?>;
-		border-radius: 100px / 55px;
-		-moz-border-radius: 100px / 55px;
-		-webkit-border-radius: 100px / 55px;
+		border-radius: 90px / 40px;
+		-moz-border-radius: 90px / 40px;
+		-webkit-border-radius: 90px / 40px;
 	}
 <?php } else { ?>
 	.ship-status img {
@@ -180,23 +168,23 @@
 <?php
 /* Now display all the info we have gathered, but only if they are selected to be visible and are not empty */
 echo '<div class="ship-status">';
-echo '<span class="status-title">SHIP STATUS</span>';
-if ($show_shield_top_image && $shield_top_image)
+echo '<span class="status-title">' . strtoupper($simtype) . ' STATUS</span>';
+if ($show_shield_top_image && $shield_image)
 {
-	if ($shield_image_format == 'granular')
+	if ($shield_image_granular)
 	{
-		echo '<img src="' . base_url() . 'application/assets/images/status/shieldsoff.png" width="140px" class="top"><br />';
-	} elseif ($shield_image_format == 'basic') {
-		echo '<img src="' . base_url() . 'application/assets/images/status/shields' . $shield_top_image . '.png" width="140px" class="top"><br />';
+		echo '<img src="' . base_url() . 'application/assets/images/status/top/shieldsoff.png" width="140px" class="top"><br />';
+	} else {
+		echo '<img src="' . base_url() . 'application/assets/images/status/top/shields' . $shield_image . '.png" width="140px" class="top"><br />';
 	}
 }
-if ($show_shield_side_image && $shield_side_image)
+if ($show_shield_side_image && $shield_image)
 {
-	if ($shield_image_format == 'granular')
+	if ($shield_image_granular)
 	{
-		echo '<img src="' . base_url() . 'application/assets/images/status/shieldsoff.png" width="140px" class="side"><br />';
-	} elseif ($shield_image_format == 'basic') {
-		echo '<img src="' . base_url() . 'application/assets/images/status/shields' . $shield_side_image . '.png" width="140px" class="side"><br />';
+		echo '<img src="' . base_url() . 'application/assets/images/status/side/shieldsoff.png" width="140px" class="side"><br />';
+	} else {
+		echo '<img src="' . base_url() . 'application/assets/images/status/side/shields' . $shield_image . '.png" width="140px" class="side"><br />';
 	}
 }
 echo '<div class="ship-status-details page-subhead">';

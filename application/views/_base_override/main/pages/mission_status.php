@@ -1,19 +1,14 @@
 <?php
-// Let's create some phantom variables to play about with for now
-	$alert = 'green';
-	$stardate = '68133.2';
-	$mission = '1';
-	$custom = 'MD30';
+// Load the model
+	$this->load->model('settings_model', 'settings');
 	
-// these phantom variables are to control what data is shown in the front view
-	$show_alertbar = true;
-	$show_post_title = true;
-	$show_post_timeline = true;
-	$show_post_date = false;
-	$show_post_authors = false;
-	$show_post_mission = false;
-	$show_stardate = true;
-	$show_custom = false;
+// Let's get the field data for the mission status
+	$mission_fields = $this->settings->get_status_fields('mission');
+	extract($mission_fields);
+	
+// Let's get the prefs data for the ship status
+	$mission_prefs = $this->settings->get_status_prefs('mission');
+	extract($mission_prefs);
 
 //Let's get the latest mission post
 	// load the missions and posts models
@@ -49,8 +44,10 @@
 			}
 		}
 
+/* Set a posted by label */
+$label['posted_by'] = ucfirst(lang('actions_posted')) .' '. lang('labels_by');
 
-/* Set some place-holder style information */
+/* Set some style information */
 ?>
 <style>
 .mission-status {
@@ -91,7 +88,7 @@ if ($show_post_authors && $item['authors'])
 	if ($show_post_date && $item['date'])
 	{ //Do nothing
 	} else {
-		echo 'Posted ' . $label['by'] . ' ' . $item['authors'] . '<br />';
+		echo $label['posted_by'] . ' ' . $item['authors'] . '<br />';
 	}
 }
 if ($show_stardate && $stardate)
