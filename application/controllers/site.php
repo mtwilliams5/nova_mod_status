@@ -496,114 +496,115 @@ class Site extends Nova_site {
 			|---------------------------------------------------------------
 			*/
 			
-			$data['inputs'] = array(
-				'stardate' => array(
-					'name' => 'stardate',
-					'id' => 'stardate',
-					'class' => 'medium',
-					'value' => $status['stardate']),
-				'mission' => array(
-					'name' => 'mission',
-					'id' => 'mission',
-					'class' => 'medium',
-					'value' => $status['mission']),
-				'post' => array(
-					'name' => 'post',
-					'id' => 'post',
-					'class' => 'medium',
-					'value' => $status['post']),
-				'custom' => array(
-					'name' => 'custom',
-					'id' => 'custom',
-					'value' => $status['custom']),
-				'show_alertbar_on' => array(
-					'name' => 'show_alertbar',
-					'id' => 'show_alertbar_on',
+			$data['inputs'] += array(
+				'location' => array(
+					'name' => 'location',
+					'id' => 'location',
+					'value' => $status['location']),
+				'speed' => array(
+					'name' => 'speed',
+					'id' => 'speed',
+					'value' => $status['speed']),
+				'shields' => array(
+					'name' => 'shields',
+					'id' => 'shields',
+					'value' => $status['shields']),
+				'hull' => array(
+					'name' => 'hull',
+					'id' => 'hull',
+					'value' => $status['hull']),
+				'systems' => array(
+					'name' => 'systems',
+					'id' => 'systems',
+					'value' => $status['systems']),
+				'shield_image_granular_on' => array(
+					'name' => 'sield_image_granular',
+					'id' => 'shield_image_granular_on',
 					'value' => 'on',
-					'checked' => $prefs['show_alertbar']),
-				'show_alertbar_off' => array(
-					'name' => 'show_alertbar',
-					'id' => 'show_alertbar_off',
+					'checked' => $prefs['shield_image_granular']),
+				'shield_image_granular_off' => array(
+					'name' => 'shield_image_granular',
+					'id' => 'shield_image_granular_off',
 					'value' => 'off',
-					'checked' => ($prefs['show_alertbar'] == false) ? true : false),
-				'show_post_title_on' => array(
-					'name' => 'show_post_title',
-					'id' => 'show_post_title_on',
+					'checked' => ($prefs['shield_image_granular'] == false) ? true : false),
+				'show_shield_top_image_on' => array(
+					'name' => 'show_shield_top_image',
+					'id' => 'show_shield_top_image_on',
 					'value' => 'on',
-					'checked' => $prefs['show_post_title']),
-				'show_post_title_off' => array(
-					'name' => 'show_post_title',
-					'id' => 'show_post_title_off',
+					'checked' => $prefs['show_shield_top_image']),
+				'show_shield_top_image_off' => array(
+					'name' => 'show_shield_top_image',
+					'id' => 'show_shield_top_image_off',
 					'value' => 'off',
-					'checked' => ($prefs['show_post_title'] == false) ? true : false),
-				'show_post_timeline_on' => array(
-					'name' => 'show_post_timeline',
-					'id' => 'show_post_timeline_on',
+					'checked' => ($prefs['show_shield_top_image'] == false) ? true : false),
+				'show_shield_side_image_on' => array(
+					'name' => 'show_shield_side_image',
+					'id' => 'show_shield_side_image_on',
 					'value' => 'on',
-					'checked' => $prefs['show_post_timeline']),
-				'show_post_timeline_off' => array(
-					'name' => 'show_post_timeline',
-					'id' => 'show_post_timeline_off',
+					'checked' => $prefs['show_shield_side_image']),
+				'show_shield_side_image_off' => array(
+					'name' => 'show_shield_side_image',
+					'id' => 'show_shield_side_image_off',
 					'value' => 'off',
-					'checked' => ($prefs['show_post_timeline'] == false) ? true : false),
-				'show_post_date_on' => array(
-					'name' => 'show_post_date',
-					'id' => 'show_post_date_on',
+					'checked' => ($prefs['show_shield_side_image'] == false) ? true : false),
+				'show_location_on' => array(
+					'name' => 'show_location',
+					'id' => 'show_location_on',
 					'value' => 'on',
-					'checked' => $prefs['show_post_date']),
-				'show_post_date_off' => array(
-					'name' => 'show_post_date',
-					'id' => 'show_post_date_off',
+					'checked' => $prefs['show_location']),
+				'show_location_off' => array(
+					'name' => 'show_location',
+					'id' => 'show_location_off',
 					'value' => 'off',
-					'checked' => ($prefs['show_post_date'] == false) ? true : false),
-				'show_post_authors_on' => array(
-					'name' => 'show_post_authors',
-					'id' => 'show_post_authors_on',
+					'checked' => ($prefs['show_location'] == false) ? true : false),
+				'show_speed_on' => array(
+					'name' => 'show_speed',
+					'id' => 'show_speed_on',
 					'value' => 'on',
-					'checked' => $prefs['show_post_authors']),
-				'show_post_authors_off' => array(
-					'name' => 'show_post_authors',
-					'id' => 'show_post_authors_off',
+					'checked' => $prefs['show_speed']),
+				'show_speed_off' => array(
+					'name' => 'show_speed',
+					'id' => 'show_speed_off',
 					'value' => 'off',
-					'checked' => ($prefs['show_post_authors'] == false) ? true : false),
-				'show_post_mission_on' => array(
-					'name' => 'show_post_mission',
-					'id' => 'show_post_mission_on',
+					'checked' => ($prefs['show_speed'] == false) ? true : false),
+				'show_shields_on' => array(
+					'name' => 'show_shields',
+					'id' => 'show_shields_on',
 					'value' => 'on',
-					'checked' => $prefs['show_post_mission']),
-				'show_post_mission_off' => array(
-					'name' => 'show_post_mission',
-					'id' => 'show_post_mission_off',
+					'checked' => $prefs['show_shields']),
+				'show_shields_off' => array(
+					'name' => 'show_shields',
+					'id' => 'show_shields_off',
 					'value' => 'off',
-					'checked' => ($prefs['show_post_mission'] == false) ? true : false),
-				'show_stardate_on' => array(
-					'name' => 'show_stardate',
-					'id' => 'show_stardate_on',
+					'checked' => ($prefs['show_shields'] == false) ? true : false),
+				'show_hull_on' => array(
+					'name' => 'show_hull',
+					'id' => 'show_hull_on',
 					'value' => 'on',
-					'checked' => $prefs['show_stardate']),
-				'show_stardate_off' => array(
-					'name' => 'show_stardate',
-					'id' => 'show_stardate_off',
+					'checked' => $prefs['show_hull']),
+				'show_hull_off' => array(
+					'name' => 'show_hull',
+					'id' => 'show_hull_off',
 					'value' => 'off',
-					'checked' => ($prefs['show_stardate'] == false) ? true : false),
-				'show_custom_on' => array(
-					'name' => 'show_custom',
-					'id' => 'show_custom_on',
+					'checked' => ($prefs['show_hull'] == false) ? true : false),
+				'show_systems_on' => array(
+					'name' => 'show_systems',
+					'id' => 'show_systems_on',
 					'value' => 'on',
-					'checked' => $prefs['show_custom']),
-				'show_custom_off' => array(
-					'name' => 'show_custom',
-					'id' => 'show_custom_off',
+					'checked' => $prefs['show_systems']),
+				'show_systems_off' => array(
+					'name' => 'show_systems',
+					'id' => 'show_systems_off',
 					'value' => 'off',
-					'checked' => ($prefs['show_custom'] == false) ? true : false),
+					'checked' => ($prefs['show_systems'] == false) ? true : false),
 			);
-			$data['values']['alert'] = array(
-					'red' => ucwords('red'),
-					'yellow' => ucwords('yellow'),
-					'green' => ucwords('green'),
-					'blue' => ucwords('blue')
+			$data['values']['shield_image'] = array(
+					'off' => ucwords('inactive'),
+					'up' => ucwords('active'),
+					'dam' => ucwords('damaged'),
+					'offline' => ucwords('offline')
 			);
-			$data['default']['alert'] = $status['alert'];
+			$data['default']['shield_image'] = $status['shield_image'];
 		
 		$data['header'] = ucwords(lang('global_sim') .' '. lang('labels_status'));
 		
@@ -650,6 +651,27 @@ class Site extends Nova_site {
 			'show_custom' => $prefs_label['show_custom'],
 			'no' => ucfirst(lang('labels_no')),
 			'yes' => ucfirst(lang('labels_yes')),
+			'location' => $status_label['location'],
+			'speed' => $status_label['speed'],
+			'shields' => $status_label['shields'],
+			'hull' => $status_label['hull'],
+			'systems' => $status_label['systems'],
+			'shield_image' => $status_label['shield_image'],
+			'ventral' => $status_label['ventral'],
+			'dorsal' => $status_label['dorsal'],
+			'port' => $status_label['port'],
+			'starboard' => $status_label['starboard'],
+			'fore' => $status_label['fore'],
+			'aft' => $status_label['aft'],
+			'shield_image_granular' => $prefs_label['shield_image_granular'],
+			'show_shield_top_image' => $prefs_label['show_shield_top_image'],
+			'show_shield_side_image' => $prefs_label['show_shield_side_image'],
+			'show_location' => $prefs_label['show_location'],
+			'show_speed' => $prefs_label['show_speed'],
+			'show_shields' => $prefs_label['show_shields'],
+			'show_hull' => $prefs_label['show_hull'],
+			'show_systems' => $prefs_label['show_systems'],
+			'shield_status' => ucwords('shield' .' '. ucfirst(lang('labels_status'))),
 		);
 		
 		// set the js data

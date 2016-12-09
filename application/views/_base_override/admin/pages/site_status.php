@@ -33,13 +33,12 @@
 					<kbd><?php echo $label['custom'];?></kbd>
 					<?php echo form_input($inputs['custom']);?>
 				</p>
-			</div>
+			</div><br />
 			
-			<br />
-            
 			<?php echo text_output($label['preferences'], 'h2', 'page-subhead');?>
-            
-				<p>
+			
+			<div class="indent-left">
+            	<p>
 					<kbd><?php echo $label['show_alertbar'];?></kbd>
 					<?php echo form_radio($inputs['show_alertbar_on']) .' '. form_label($label['yes'], 'show_alertbar_on');?>
 					<?php echo form_radio($inputs['show_alertbar_off']) .' '. form_label($label['no'], 'show_alertbar_off');?>
@@ -79,106 +78,98 @@
 					<?php echo form_radio($inputs['show_custom_on']) .' '. form_label($label['yes'], 'show_custom_on');?>
 					<?php echo form_radio($inputs['show_custom_off']) .' '. form_label($label['no'], 'show_custom_off');?>
 				</p>
+            </div>
             
 			<p><?php echo form_button($button_submit);?></p>
 		<?php echo form_close();?>
 	</div>
 	
 	<div id="two">
-		<?php #echo form_open('site/settings/1');?>
-			<?php #echo text_output($label['header_system'], 'h2', 'page-subhead');?>
-			
-			<!--<div class="indent-left">
-				<p>
-					<kbd><?php #echo $label['maint'];?></kbd>
-					<?php #echo form_radio($inputs['maintenance_on']) .' '. form_label($label['on'], 'maintenance_on');?>
-					<?php #echo form_radio($inputs['maintenance_off']) .' '. form_label($label['off'], 'maintenance_off');?>
-				</p>
-				<p>
-					<kbd><?php #echo $label['updates'];?></kbd>
-					<?php #echo form_dropdown('updates', $values['updates'], $default['updates']);?>
-				</p><br />
-				
-				<p>
-					<kbd><?php #echo $label['date'];?></kbd>
-					<p><?php #echo $label['date_format'];?></p>
-					<?php #echo form_dropdown('formats', $values['date_format'], $default['date_format'], 'id="formats"');?>
-					&nbsp;&nbsp;
-					<?php #echo form_input($inputs['date_format']);?><br />
-					<p class="fontSmall">
-						<strong><?php #echo $label['sample_output'];?></strong>:
-						<span id="format_output"><?php #echo mdate($inputs['date_format']['value'], now());?></span>
-					</p>
-				</p>
-				<p>
-					<kbd><?php #echo $label['timezone'];?></kbd>
-					<?php #echo timezone_menu($default['timezone'], '', 'timezone');?>
-				</p>
-				<p>
-					<kbd><?php #echo $label['dst'];?></kbd>
-					<?php #echo form_radio($inputs['dst_y']) .' '. form_label($label['yes'], 'dst_y');?>
-					<?php #echo form_radio($inputs['dst_n']) .' '. form_label($label['no'], 'dst_n');?>
-				</p><br />
-				
-				<p>
-					<kbd><?php #echo $label['allowed_chars'];?></kbd>
-					<?php #echo form_input($inputs['allowed_playing_chars']);?>
-				</p>
-				<p>
-					<kbd><?php #echo $label['allowed_npcs'];?></kbd>
-					<?php #echo form_input($inputs['allowed_npcs']);?>
-				</p><br />
-				
-				<p>
-					<kbd>
-						<?php #echo $label['online'];?>&nbsp;
-						<a href="#" rel="tooltip" class="fontTiny image" title="<?php #echo $label['tt_online_timespan'];?>"><?php #echo img($images['help']);?></a>
-					</kbd>
-					<?php #echo form_input($inputs['online_timespan']);?>
-					<span class="gray"><?php #echo $label['minutes'];?>
-				</p>
-				<p>
-					<kbd>
-						<?php #echo $label['requirement'];?>&nbsp;
-						<a href="#" rel="tooltip" class="fontTiny image" title="<?php #echo $label['tt_posting_requirement'];?>"><?php #echo img($images['help']);?></a>
-					</kbd>
-					<?php #echo form_input($inputs['posting_req']);?>
-					<span class="gray"><?php #echo $label['days'];?>
-				</p>
-				<p>
-					<kbd>
-						<?php #echo $label['posts_participants'];?>&nbsp;
-						<a href="#" rel="tooltip" class="fontTiny image" title="<?php #echo $label['tt_posting_participants'];?>"><?php #echo img($images['help']);?></a>
-					</kbd>
-					<?php #echo form_radio($inputs['participants_y']) .' '. form_label($label['yes'], 'participants_y');?>
-					<?php #echo form_radio($inputs['participants_n']) .' '. form_label($label['no'], 'participants_n');?>
-				</p>
-			</div><br />
-			
-			<?php #cho text_output($label['header_email'], 'h2', 'page-subhead');?>
+		<?php echo form_open('site/status/1');?>
+			<?php echo text_output($label['sim_status'], 'h2', 'page-subhead');?>
 			
 			<div class="indent-left">
 				<p>
-					<kbd><?php #echo $label['sysemail'];?></kbd>
-					<?php #echo form_radio($inputs['sys_email_on']) .' '. form_label($label['on'], 'sys_email_on');?>
-					<?php #echo form_radio($inputs['sys_email_off']) .' '. form_label($label['off'], 'sys_email_off');?>
+					<kbd><?php echo $label['location'];?></kbd>
+					<?php echo form_input($inputs['location']);?>
 				</p>
 				<p>
-					<kbd><?php #echo $label['emailsubject'];?></kbd>
-					<?php #echo form_input($inputs['email_subject']);?>
+					<kbd><?php echo $label['speed'];?></kbd>
+					<?php echo form_input($inputs['speed']);?>
+				</p>				
+				<p>
+					<kbd><?php echo $label['shields'];?></kbd>
+					<?php echo form_input($inputs['shields']);?>
 				</p>
 				<p>
-					<kbd><?php #echo $label['emailname'];?></kbd>
-					<?php #echo form_input($inputs['email_name']);?>
+					<kbd><?php echo $label['hull'];?></kbd>
+					<?php echo form_input($inputs['hull']);?>
 				</p>
 				<p>
-					<kbd><?php #echo $label['emailaddress'];?></kbd>
-					<?php #echo form_input($inputs['email_address']);?>
+					<kbd><?php echo $label['systems'];?></kbd>
+					<?php echo form_input($inputs['systems']);?>
 				</p>
-			</div>
+			</div><br />
+			
+			<?php echo text_output($label['shield_status'], 'h2', 'page-subhead');?>
+			
+			<div class="indent-left">
+				<p>
+					<kbd><?php echo $label['shield_image_granular'];?></kbd>
+					<?php echo form_radio($inputs['shield_image_granular_on']) .' '. form_label($label['yes'], 'shield_image_granular_on');?>
+					<?php echo form_radio($inputs['shield_image_granular_off']) .' '. form_label($label['no'], 'shield_image_granular_off');?>
+				</p><br />
+                <?php if ($inputs['shield_image_granular_on']['checked']) { ?>
+                <?php } else { ?>
+                    <p>
+                        <kbd><?php echo $label['shield_image'];?></kbd>
+                        <?php echo form_dropdown('shield_image', $values['shield_image'], $default['shield_image']);?>
+                    </p>
+                <?php } ?>
+			</div><br />
+			
+			<?php echo text_output($label['preferences'], 'h2', 'page-subhead');?>
+			
+			<div class="indent-left">
+            	<p>
+					<kbd><?php echo $label['show_shield_top_image'];?></kbd>
+					<?php echo form_radio($inputs['show_shield_top_image_on']) .' '. form_label($label['yes'], 'show_shield_top_image_on');?>
+					<?php echo form_radio($inputs['show_shield_top_image_off']) .' '. form_label($label['no'], 'show_shield_top_image_off');?>
+				</p>
+				<p>
+					<kbd><?php echo $label['show_shield_side_image'];?></kbd>
+					<?php echo form_radio($inputs['show_shield_side_image_on']) .' '. form_label($label['yes'], 'show_shield_side_image_on');?>
+					<?php echo form_radio($inputs['show_shield_side_image_off']) .' '. form_label($label['no'], 'show_shield_side_image_off');?>
+				</p>
+				<p>
+					<kbd><?php echo $label['show_location'];?></kbd>
+					<?php echo form_radio($inputs['show_location_on']) .' '. form_label($label['yes'], 'show_location_on');?>
+					<?php echo form_radio($inputs['show_location_off']) .' '. form_label($label['no'], 'show_location_off');?>
+				</p>
+				<p>
+					<kbd><?php echo $label['show_speed'];?></kbd>
+					<?php echo form_radio($inputs['show_speed_on']) .' '. form_label($label['yes'], 'show_speed_on');?>
+					<?php echo form_radio($inputs['show_speed_off']) .' '. form_label($label['no'], 'show_speed_off');?>
+				</p>
+				<p>
+					<kbd><?php echo $label['show_shields'];?></kbd>
+					<?php echo form_radio($inputs['show_shields_on']) .' '. form_label($label['yes'], 'show_shields_on');?>
+					<?php echo form_radio($inputs['show_shields_off']) .' '. form_label($label['no'], 'show_shields_off');?>
+				</p>
+				<p>
+					<kbd><?php echo $label['show_hull'];?></kbd>
+					<?php echo form_radio($inputs['show_hull_on']) .' '. form_label($label['yes'], 'show_hull_on');?>
+					<?php echo form_radio($inputs['show_hull_off']) .' '. form_label($label['no'], 'show_hull_off');?>
+				</p>
+				<p>
+					<kbd><?php echo $label['show_systems'];?></kbd>
+					<?php echo form_radio($inputs['show_systems_on']) .' '. form_label($label['yes'], 'show_systems_on');?>
+					<?php echo form_radio($inputs['show_systems_off']) .' '. form_label($label['no'], 'show_systems_off');?>
+				</p>
+            </div>
 			
 			<br />
-			<p><?php #echo form_button($button_submit);?></p>-->
-		<?php #echo form_close();?>
+			<p><?php echo form_button($button_submit);?></p>
+		<?php echo form_close();?>
 	</div>
 </div>
