@@ -15,23 +15,26 @@
 	// load the text helper
 	$this->load->helper('text');
 	
-	// check to see if we're looking only at a set mission
-	if ( $mission !== false )
-	{ //fetch the last post of that mission
-		$posts = $this->posts->get_post_list($mission, 'desc', 1, 0, 'activated');
-	} else {
-	// fetch the last post
-		$posts = $this->posts->get_post_list('', 'desc', 1, 0, 'activated');
-	}
+	// check to see if the post we're using is being overridden
+	if ( $post == false)
+	{
+		// check to see if we're looking only at a set mission
+		if ( $mission !== false || $mission > 0 )
+		{ //fetch the last post of that mission
+			$posts = $this->posts->get_post_list($mission, 'desc', 1, 0, 'activated');
+		} else {
+		// fetch the last post
+			$posts = $this->posts->get_post_list('', 'desc', 1, 0, 'activated');
+		}
 
 		if ($posts->num_rows() > 0)
 		{
 			$datestring = $this->options['date_format'];
-
+	
 			foreach ($posts->result() as $row)
 			{
 				$date = gmt_to_local($row->post_date, $this->timezone, $this->dst);
-
+	
 				$item['id'] = $row->post_id;
 				$item['title'] = $row->post_title;
 				$item['timeline'] = $row->post_timeline;
@@ -40,6 +43,24 @@
 				$item['mission'] = anchor('sim/missions/id/'.$row->post_mission, $this->mis->get_mission($row->post_mission, 'mission_title'), 'class="page-subhead"');
 			}
 		}
+	} else {
+		// fetch the details of the post
+		$posts = $this->posts->get_post($post);
+		
+		if($posts !== NULL)
+		{
+			$datestring = $this->options['date_format'];
+	
+			$date = gmt_to_local($posts->post_date, $this->timezone, $this->dst);
+	
+			$item['id'] = $posts->post_id;
+			$item['title'] = $posts->post_title;
+			$item['timeline'] = $posts->post_timeline;
+			$item['date'] = mdate($datestring, $date);
+			$item['authors'] = $this->char->get_authors($posts->post_authors, true, true);
+			$item['mission'] = anchor('sim/missions/id/'.$posts->post_mission, $this->mis->get_mission($posts->post_mission, 'mission_title'), 'class="page-subhead"');
+		}
+	}
 
 /* Set a posted by label */
 $label['posted_by'] = ucfirst(lang('actions_posted')) .' '. lang('labels_by');

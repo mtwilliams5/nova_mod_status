@@ -23,7 +23,7 @@
 				</p>
 				<p>
 					<kbd><?php echo $label['mission'];?></kbd>
-					<?php echo form_input($inputs['mission']);?>
+					<?php echo form_dropdown('mission', $values['mission'], $default['mission']);?>
 				</p>
 				<p>
 					<kbd><?php echo $label['post'];?></kbd>

@@ -440,15 +440,10 @@ class Site extends Nova_site {
 					'id' => 'stardate',
 					'class' => 'medium',
 					'value' => $status['stardate']),
-				'mission' => array(
-					'name' => 'mission',
-					'id' => 'mission',
-					'class' => 'medium',
-					'value' => $status['mission']),
 				'post' => array(
 					'name' => 'post',
 					'id' => 'post',
-					'class' => 'medium',
+					'class' => 'small',
 					'value' => $status['post']),
 				'custom' => array(
 					'name' => 'custom',
@@ -535,13 +530,44 @@ class Site extends Nova_site {
 					'value' => false,
 					'checked' => ($prefs['show_custom'] == false) ? true : false),
 			);
+			
 			$data['values']['alert'] = array(
 					'red' => ucwords('red'),
 					'yellow' => ucwords('yellow'),
 					'green' => ucwords('green'),
 					'blue' => ucwords('blue')
 			);
+			
+			// let's get the list of missions
+			$this->load->model('missions_model', 'mis');
+			$missions = $this->mis->get_all_missions('current');
+			
+			if ($missions->num_rows() > 0)
+			{	
+				foreach ($missions->result() as $mission)
+				{
+					$data['missions'][$mission->mission_id] = $mission->mission_title;
+				}
+			}
+			else
+			{
+				$data['missions'] = false;
+			}
+			
+			$data['values']['mission'] = array(
+				0 => ucwords(lang('labels_no') .' '. ucfirst(lang('global_mission')))
+			);
+			
+			if ($data['missions'])
+			{
+				foreach($data['missions'] as $key => $value)
+				{
+					$data['values']['mission'][$key] = $value;
+				}
+			}
+			
 			$data['default']['alert'] = $status['alert'];
+			$data['default']['mission'] = $status['mission'];
 			
 			/*
 			|---------------------------------------------------------------
