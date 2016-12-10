@@ -14,6 +14,58 @@ class Site extends Nova_site {
 	 */
 	public function status()
 	{
+		// let's check to see if the page has been added to the access_pages table, and if not add it
+		$this->db->from('access_pages');
+		$this->db->where('page_url', 'site/status');
+		
+		$query = $this->db->get();
+		
+		if ($query->num_rows() < 1) // access_pages doesn't recognise the URL we're using for the admin page, so we need to set it up
+		{
+			$page = array(array(
+				'page_name' => 'Sim Status',
+				'page_url' => 'site/status',
+				'page_level' => 0,
+				'page_group' => 3,
+				'page_desc' => 'Management of the sim status / mission status mod values and preferences'
+			));
+			$insert = array();
+			
+			foreach ($page as $k => $v)
+			{
+				$insert[] = $this->db->insert('access_pages', $v);
+			}
+			// now we have told access_pages about the page, we need to add it to the access roles
+			// first we need to know the ID of the page url we just added
+			$this->db->from('access_pages');
+			$this->db->where('page_url', 'site/status');
+			$query = $this->db->get();
+			$row = $query->row();
+			$page_id = $row->page_id;
+			
+			$i=1;
+			while ($i<=2) // we're going to set this one both the system admin and basic admin roles by default
+			{
+				// now let's get the data we need from the access_roles table
+				$this->db->from('access_roles');
+				$this->db->where('role_id', $i);
+				$query = $this->db->get();
+				$row = $query->row();
+				// let's get the list of pages this role can already access
+				$access_pages = $row->role_access;
+				// now let's add our page to the list
+				$access_pages .= ','.$page_id;
+				$data = array(
+					'role_access' => $access_pages
+				);
+				// and let's add that back into the database
+				$this->db->where('role_id', $i);
+				$query = $this->db->update('access_roles', $data);
+				
+			$i++;
+			}
+		}
+		
 		Auth::check_access();
 		
 		// we need to create the necessary database tables if they don't already exist
@@ -77,7 +129,7 @@ class Site extends Nova_site {
 		$fields_rows = $this->db->count_all('status_fields');
 		$prefs_rows = $this->db->count_all('status_prefs');
 		
-		if (($fields_rows < 1) || ($prefs_rows < 1))
+		if (($fields_rows < 1) && ($prefs_rows < 1))
 		{ // If the tables aren't populated, fill them
 			// now we need to populate the tables
 			
@@ -297,6 +349,37 @@ class Site extends Nova_site {
 				{
 					$insert[] = $this->db->insert($value, $v);
 				}
+			}
+		}
+		
+		// now let's check to see if there is a menu item for the page
+		$this->db->from('menu_items');
+		$this->db->where('menu_link', 'site/status');
+		
+		$query = $this->db->get();
+		
+		if ($query->num_rows() < 1) // there isn't a menu item for this page anywhere, so let's add one
+		{
+			$menu = array(array(
+				'menu_name' => 'Sim Status',
+				'menu_group' => 0,
+				'menu_order' => 1,
+				'menu_link' => 'site/status',
+				'menu_link_type' => 'onsite',
+				'menu_need_login' => 'none',
+				'menu_use_access' => 'y',
+				'menu_access' => 'site/settings',
+				'menu_access_level' => 0,
+				'menu_type' => 'adminsub',
+				'menu_cat' => 'admin',
+				'menu_display' => 'y',
+				'menu_sim_type' => 1
+			));
+			$insert = array();
+			
+			foreach ($menu as $k => $v)
+			{
+				$insert[] = $this->db->insert('menu_items', $v);
 			}
 		}
 		
