@@ -597,7 +597,7 @@ class Site extends Nova_site {
 					'id' => 'systems',
 					'value' => $status['systems']),
 				'shield_image_granular_on' => array(
-					'name' => 'sield_image_granular',
+					'name' => 'shield_image_granular',
 					'id' => 'shield_image_granular_on',
 					'value' => true,
 					'checked' => $prefs['shield_image_granular']),

@@ -15,7 +15,7 @@
 				value: value,
 				min: 0,
 				max: 100,
-				step: 10,
+				step: 25,
 				slide: function(event, ui) {
 					$('#' + parseInt(ui.handle.parentNode.id) + '_amount').html(ui.value);
 					$('#' + parseInt(ui.handle.parentNode.id) + '_percent').val(ui.value);
