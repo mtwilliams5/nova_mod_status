@@ -154,4 +154,24 @@ class Status_model extends CI_Model {
 		
 		return $row->simtype_name;
 	}
+	
+	public function update_status($field = '', $data = '', $identifier = 'status_key')
+	{
+		$this->db->where($identifier, $field);
+		$query = $this->db->update('status_fields', $data);
+			
+		$this->dbutil->optimize_table('status_fields');
+		
+		return $query; 
+	}
+	
+	public function update_prefs($field = '', $data = '', $identifier = 'prefs_key')
+	{
+		$this->db->where($identifier, $field);
+		$query = $this->db->update('status_prefs', $data);
+			
+		$this->dbutil->optimize_table('status_prefs');
+		
+		return $query; 
+	}
 }

@@ -300,6 +300,59 @@ class Site extends Nova_site {
 			}
 		}
 		
+		// Let's run the process of submitting the form
+		
+		if (isset($_POST['submit']))
+		{
+			$key_exceptions = array('submit');
+			$key_prefs = array('show_alertbar','show_post_title','show_post_timeline','show_post_date','show_post_authors','show_post_mission','show_stardate','show_custom','shield_image_granular','show_shield_top_image','show_shield_side_image','show_location','show_speed','show_shields','show_hull','show_systems');
+			
+			foreach ($_POST as $key => $value)
+			{
+				if ( ! in_array($key, $key_exceptions))
+				{
+					if ( ! in_array($key, $key_prefs))
+					{
+						$update_array['status_value'] = $this->security->xss_clean($value);
+						
+						$update = $this->status_model->update_status($key, $update_array);
+					} else {
+						$update_prefs_array['prefs_value'] = $this->security->xss_clean($value);
+						
+						$update = $this->status_model->update_prefs($key, $update_prefs_array);
+					}
+				}
+			}
+			
+			if ($update > 0)
+			{				
+				$message = sprintf(
+					lang('flash_success_plural'),
+					ucfirst(lang('labels_status') .' '. lang('labels_settings')),
+					lang('actions_updated'),
+					''
+				);
+				
+				$flash['status'] = 'success';
+				$flash['message'] = text_output($message);
+			}
+			else
+			{
+				$message = sprintf(
+					lang('flash_failure_plural'),
+					ucfirst(lang('labels_status') .' '. lang('labels_settings')),
+					lang('actions_updated'),
+					''
+				);
+				
+				$flash['status'] = 'error';
+				$flash['message'] = text_output($message);
+			}
+			
+			// set the flash message
+			$this->_regions['flash_message'] = Location::view('flash', $this->skin, 'admin', $flash);
+		}
+		
 		// grab all status fields
 		$s = $this->status_model->get_all_status_fields();
 		
@@ -404,82 +457,82 @@ class Site extends Nova_site {
 				'show_alertbar_on' => array(
 					'name' => 'show_alertbar',
 					'id' => 'show_alertbar_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_alertbar']),
 				'show_alertbar_off' => array(
 					'name' => 'show_alertbar',
 					'id' => 'show_alertbar_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_alertbar'] == false) ? true : false),
 				'show_post_title_on' => array(
 					'name' => 'show_post_title',
 					'id' => 'show_post_title_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_post_title']),
 				'show_post_title_off' => array(
 					'name' => 'show_post_title',
 					'id' => 'show_post_title_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_post_title'] == false) ? true : false),
 				'show_post_timeline_on' => array(
 					'name' => 'show_post_timeline',
 					'id' => 'show_post_timeline_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_post_timeline']),
 				'show_post_timeline_off' => array(
 					'name' => 'show_post_timeline',
 					'id' => 'show_post_timeline_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_post_timeline'] == false) ? true : false),
 				'show_post_date_on' => array(
 					'name' => 'show_post_date',
 					'id' => 'show_post_date_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_post_date']),
 				'show_post_date_off' => array(
 					'name' => 'show_post_date',
 					'id' => 'show_post_date_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_post_date'] == false) ? true : false),
 				'show_post_authors_on' => array(
 					'name' => 'show_post_authors',
 					'id' => 'show_post_authors_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_post_authors']),
 				'show_post_authors_off' => array(
 					'name' => 'show_post_authors',
 					'id' => 'show_post_authors_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_post_authors'] == false) ? true : false),
 				'show_post_mission_on' => array(
 					'name' => 'show_post_mission',
 					'id' => 'show_post_mission_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_post_mission']),
 				'show_post_mission_off' => array(
 					'name' => 'show_post_mission',
 					'id' => 'show_post_mission_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_post_mission'] == false) ? true : false),
 				'show_stardate_on' => array(
 					'name' => 'show_stardate',
 					'id' => 'show_stardate_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_stardate']),
 				'show_stardate_off' => array(
 					'name' => 'show_stardate',
 					'id' => 'show_stardate_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_stardate'] == false) ? true : false),
 				'show_custom_on' => array(
 					'name' => 'show_custom',
 					'id' => 'show_custom_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_custom']),
 				'show_custom_off' => array(
 					'name' => 'show_custom',
 					'id' => 'show_custom_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_custom'] == false) ? true : false),
 			);
 			$data['values']['alert'] = array(
@@ -520,82 +573,82 @@ class Site extends Nova_site {
 				'shield_image_granular_on' => array(
 					'name' => 'sield_image_granular',
 					'id' => 'shield_image_granular_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['shield_image_granular']),
 				'shield_image_granular_off' => array(
 					'name' => 'shield_image_granular',
 					'id' => 'shield_image_granular_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['shield_image_granular'] == false) ? true : false),
 				'show_shield_top_image_on' => array(
 					'name' => 'show_shield_top_image',
 					'id' => 'show_shield_top_image_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_shield_top_image']),
 				'show_shield_top_image_off' => array(
 					'name' => 'show_shield_top_image',
 					'id' => 'show_shield_top_image_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_shield_top_image'] == false) ? true : false),
 				'show_shield_side_image_on' => array(
 					'name' => 'show_shield_side_image',
 					'id' => 'show_shield_side_image_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_shield_side_image']),
 				'show_shield_side_image_off' => array(
 					'name' => 'show_shield_side_image',
 					'id' => 'show_shield_side_image_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_shield_side_image'] == false) ? true : false),
 				'show_location_on' => array(
 					'name' => 'show_location',
 					'id' => 'show_location_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_location']),
 				'show_location_off' => array(
 					'name' => 'show_location',
 					'id' => 'show_location_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_location'] == false) ? true : false),
 				'show_speed_on' => array(
 					'name' => 'show_speed',
 					'id' => 'show_speed_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_speed']),
 				'show_speed_off' => array(
 					'name' => 'show_speed',
 					'id' => 'show_speed_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_speed'] == false) ? true : false),
 				'show_shields_on' => array(
 					'name' => 'show_shields',
 					'id' => 'show_shields_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_shields']),
 				'show_shields_off' => array(
 					'name' => 'show_shields',
 					'id' => 'show_shields_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_shields'] == false) ? true : false),
 				'show_hull_on' => array(
 					'name' => 'show_hull',
 					'id' => 'show_hull_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_hull']),
 				'show_hull_off' => array(
 					'name' => 'show_hull',
 					'id' => 'show_hull_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_hull'] == false) ? true : false),
 				'show_systems_on' => array(
 					'name' => 'show_systems',
 					'id' => 'show_systems_on',
-					'value' => 'on',
+					'value' => true,
 					'checked' => $prefs['show_systems']),
 				'show_systems_off' => array(
 					'name' => 'show_systems',
 					'id' => 'show_systems_off',
-					'value' => 'off',
+					'value' => false,
 					'checked' => ($prefs['show_systems'] == false) ? true : false),
 			);
 			$data['values']['shield_image'] = array(
