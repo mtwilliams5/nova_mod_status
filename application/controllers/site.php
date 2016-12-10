@@ -301,7 +301,7 @@ class Site extends Nova_site {
 		}
 		
 		// grab all status fields
-		$s = $this->settings->get_all_status_fields();
+		$s = $this->status_model->get_all_status_fields();
 		
 		if ($s->num_rows() > 0)
 		{
@@ -339,7 +339,7 @@ class Site extends Nova_site {
 			
 		
 		// grab all status preferences
-		$p = $this->settings->get_all_status_prefs();
+		$p = $this->status_model->get_all_status_prefs();
 		
 		if ($p->num_rows() > 0)
 		{
@@ -617,7 +617,7 @@ class Site extends Nova_site {
 		$data['header'] = ucwords(lang('global_sim') .' '. lang('labels_status'));
 		
 		// grab all status field labels
-		$s = $this->settings->get_all_status_fields();
+		$s = $this->status_model->get_all_status_fields();
 		
 		if ($s->num_rows() > 0)
 		{
@@ -628,7 +628,7 @@ class Site extends Nova_site {
 		}
 		
 		// grab all status preferences labels
-		$p = $this->settings->get_all_status_prefs();
+		$p = $this->status_model->get_all_status_prefs();
 		
 		if ($p->num_rows() > 0)
 		{

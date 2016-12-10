@@ -9,6 +9,32 @@ class Status_model extends CI_Model {
 		$this->load->dbutil();
 	}
 	
+	public function get_all_status_fields($type = '')
+	{
+		$this->db->from('status_fields');
+		if ( !empty($type) )
+		{
+			$this->db->where('status_type', $type);
+		}
+		
+		$query = $this->db->get();
+		
+		return $query;
+	}
+	
+	public function get_all_status_prefs($type = '')
+	{
+		$this->db->from('status_prefs');
+		if ( !empty($type) )
+		{
+			$this->db->where('prefs_type', $type);
+		}
+		
+		$query = $this->db->get();
+		
+		return $query;
+	}
+	
 	public function get_status_field($field = 0, $type = '', $value_only = false)
 	{
 		if ( ! is_numeric($field))
