@@ -133,9 +133,9 @@
 		border-bottom-color: <?php echo $port; ?>;
 		border-left-color: <?php echo $fore; ?>;
 		border-right-color: <?php echo $aft; ?>;
-		border-radius: 100px / 55px;
-		-moz-border-radius: 100px / 55px;
-		-webkit-border-radius: 100px / 55px;
+		border-radius: <?php echo $shield_top_radius_horizontal . 'px';?> / <?php echo $shield_top_radius_vertical . 'px';?>;
+		-moz-border-radius: <?php echo $shield_top_radius_horizontal . 'px';?> / <?php echo $shield_top_radius_vertical . 'px';?>;
+		-webkit-border-radius: <?php echo $shield_top_radius_horizontal . 'px';?> / <?php echo $shield_top_radius_vertical . 'px';?>;
 	}
 	.ship-status .side {
 		margin-top: .5em;
@@ -144,9 +144,9 @@
 		border-bottom-color: <?php echo $ventral; ?>;
 		border-left-color: <?php echo $fore; ?>;
 		border-right-color: <?php echo $aft; ?>;
-		border-radius: 90px / 40px;
-		-moz-border-radius: 90px / 40px;
-		-webkit-border-radius: 90px / 40px;
+		border-radius: <?php echo $shield_side_radius_horizontal . 'px';?> / <?php echo $shield_side_radius_vertical . 'px';?>;
+		-moz-border-radius: <?php echo $shield_side_radius_horizontal . 'px';?> / <?php echo $shield_side_radius_vertical . 'px';?>;
+		-webkit-border-radius: <?php echo $shield_side_radius_horizontal . 'px';?> / <?php echo $shield_side_radius_vertical . 'px';?>;
 	}
 <?php } else { ?>
 	.ship-status img {

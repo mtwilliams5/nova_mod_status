@@ -223,6 +223,36 @@
                     </p>
                 <?php } ?>
 			</div><br />
+			<?php echo text_output($label['shield_radius'], 'h2', 'page-subhead');?>
+			
+			<div class="indent-left">
+				<table class="table50">
+                	<tr>
+                    	<td colspan="2"><strong><?php echo $label['top'];?></strong></td>
+						<td class="col_5"></td>
+                        <td colspan="2"><strong><?php echo $label['side'];?></strong></td>
+                    </tr>
+                    <tr>
+                    	<td><p>
+                        	<kbd><?php echo $label['shield_top_radius_horizontal'];?></kbd>
+                            <?php echo form_input($inputs['shield_top_radius_horizontal']);?>px
+                        </p></td>
+                    	<td><p>
+                        	<kbd><?php echo $label['shield_top_radius_vertical'];?></kbd>
+                            <?php echo form_input($inputs['shield_top_radius_vertical']);?>px
+                        </p></td>
+						<td class="col_5"></td>
+                    	<td><p>
+                        	<kbd><?php echo $label['shield_side_radius_horizontal'];?></kbd>
+                            <?php echo form_input($inputs['shield_side_radius_horizontal']);?>px
+                        </p></td>
+                    	<td><p>
+                        	<kbd><?php echo $label['shield_side_radius_vertical'];?></kbd>
+                            <?php echo form_input($inputs['shield_side_radius_vertical']);?>px
+                        </p></td>
+                    </tr>
+                </table>
+            </div><br />
 			
 			<?php echo text_output($label['preferences'], 'h2', 'page-subhead');?>
 			
