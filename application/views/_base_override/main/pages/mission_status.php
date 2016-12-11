@@ -8,9 +8,6 @@
 	extract($mission_prefs);
 
 //Let's get the latest mission post
-	// load the missions and posts models
-	$this->load->model('missions_model', 'mis');
-	$this->load->model('posts_model', 'posts');
 
 	// load the text helper
 	$this->load->helper('text');
