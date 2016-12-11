@@ -29,4 +29,4 @@
 
 require_once MODPATH.'core/config/nova_autoload.php';
 
-$autoload['model'] = array('status_model');
+$autoload['model'] = array('status_model','posts_model','missions_model');

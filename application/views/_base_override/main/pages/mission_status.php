@@ -21,10 +21,10 @@
 		// check to see if we're looking only at a set mission
 		if ( $mission !== false || $mission > 0 )
 		{ //fetch the last post of that mission
-			$posts = $this->posts->get_post_list($mission, 'desc', 1, 0, 'activated');
+			$posts = $this->posts_model->get_post_list($mission, 'desc', 1, 0, 'activated');
 		} else {
 		// fetch the last post
-			$posts = $this->posts->get_post_list('', 'desc', 1, 0, 'activated');
+			$posts = $this->posts_model->get_post_list('', 'desc', 1, 0, 'activated');
 		}
 
 		if ($posts->num_rows() > 0)
@@ -40,12 +40,12 @@
 				$item['timeline'] = $row->post_timeline;
 				$item['date'] = mdate($datestring, $date);
 				$item['authors'] = $this->char->get_authors($row->post_authors, true, true);
-				$item['mission'] = anchor('sim/missions/id/'.$row->post_mission, $this->mis->get_mission($row->post_mission, 'mission_title'), 'class="page-subhead"');
+				$item['mission'] = anchor('sim/missions/id/'.$row->post_mission, $this->missions_model->get_mission($row->post_mission, 'mission_title'), 'class="page-subhead"');
 			}
 		}
 	} else {
 		// fetch the details of the post
-		$posts = $this->posts->get_post($post);
+		$posts = $this->posts_model->get_post($post);
 		
 		if($posts !== NULL)
 		{
@@ -58,7 +58,7 @@
 			$item['timeline'] = $posts->post_timeline;
 			$item['date'] = mdate($datestring, $date);
 			$item['authors'] = $this->char->get_authors($posts->post_authors, true, true);
-			$item['mission'] = anchor('sim/missions/id/'.$posts->post_mission, $this->mis->get_mission($posts->post_mission, 'mission_title'), 'class="page-subhead"');
+			$item['mission'] = anchor('sim/missions/id/'.$posts->post_mission, $this->missions_model->get_mission($posts->post_mission, 'mission_title'), 'class="page-subhead"');
 		}
 	}
 
