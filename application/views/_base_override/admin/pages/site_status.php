@@ -122,6 +122,10 @@
 			</div>
                 <?php if ($inputs['shield_image_granular_on']['checked']) { ?>
                 <div class="indent-left">
+                    <p>
+                        <kbd><?php echo $label['shield_image'];?></kbd>
+                        <?php echo form_dropdown('shield_image', $values['shield_updown'], $default['shield_image']);?>
+                    </p>
                 <div id="phantom" class="hidden">
 					<table class="table50">
 						<tr>

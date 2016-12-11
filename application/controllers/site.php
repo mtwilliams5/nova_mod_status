@@ -805,6 +805,10 @@ class Site extends Nova_site {
 					'dam' => ucwords('damaged'),
 					'offline' => ucwords('offline')
 			);
+			$data['values']['shield_updown'] = array(
+					'off' => ucwords('inactive'),
+					'up' => ucwords('active')
+			);
 			$data['default']['shield_image'] = $status['shield_image'];
 			
 			$data['shields']['ventral'] = $status['ventral'];
