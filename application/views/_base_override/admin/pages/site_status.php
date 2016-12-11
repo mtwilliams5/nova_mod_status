@@ -118,20 +118,19 @@
 					<kbd><?php echo $label['shield_image_granular'];?></kbd>
 					<?php echo form_radio($inputs['shield_image_granular_on']) .' '. form_label($label['yes'], 'shield_image_granular_on');?>
 					<?php echo form_radio($inputs['shield_image_granular_off']) .' '. form_label($label['no'], 'shield_image_granular_off');?>
-				</p><br />
+				</p>
+			</div>
                 <?php if ($inputs['shield_image_granular_on']['checked']) { ?>
-                <div id="shields_ventral">
+                <div class="indent-left">
+                <div id="phantom" class="hidden">
 					<table class="table50">
 						<tr>
 							<td class="col_30pct slider_control UITheme">
-								<strong><?php echo $label['ventral'];?>:</strong>
-								<span id="shields_ventral_amount"><?php echo $shields['ventral'];?></span>
-								<input type="hidden" name="shields_ventral_percent" id="shields_ventral_percent" value="<?php echo $shields['ventral'];?>" />
 							</td>
                         </tr>
                         <tr>
                             <td class="slider_control UITheme">
-                                <div id="shields_ventral" class="slider"><?php echo $shields['ventral'];?></div>
+                                <div id="phantom" class="slider">0</div>
                             </td>
 						</tr>
                     </table>
@@ -148,6 +147,22 @@
                         <tr>
                             <td class="slider_control UITheme">
                                 <div id="shields_dorsal" class="slider"><?php echo $shields['dorsal'];?></div>
+                            </td>
+						</tr>
+                    </table>
+                </div>
+                <div id="shields_ventral">
+					<table class="table50">
+						<tr>
+							<td class="col_30pct slider_control UITheme">
+								<strong><?php echo $label['ventral'];?>:</strong>
+								<span id="shields_ventral_amount"><?php echo $shields['ventral'];?></span>
+								<input type="hidden" name="shields_ventral_percent" id="shields_ventral_percent" value="<?php echo $shields['ventral'];?>" />
+							</td>
+                        </tr>
+                        <tr>
+                            <td class="slider_control UITheme">
+                                <div id="shields_ventral" class="slider"><?php echo $shields['ventral'];?></div>
                             </td>
 						</tr>
                     </table>
@@ -216,13 +231,7 @@
 						</tr>
                     </table>
                 </div>
-                <?php } else { ?>
-                    <p>
-                        <kbd><?php echo $label['shield_image'];?></kbd>
-                        <?php echo form_dropdown('shield_image', $values['shield_image'], $default['shield_image']);?>
-                    </p>
-                <?php } ?>
-			</div><br />
+            </div><br />
 			<?php echo text_output($label['shield_radius'], 'h2', 'page-subhead');?>
 			
 			<div class="indent-left">
@@ -253,6 +262,13 @@
                     </tr>
                 </table>
             </div><br />
+                <?php } else { ?>
+                    <p>
+                        <kbd><?php echo $label['shield_image'];?></kbd>
+                        <?php echo form_dropdown('shield_image', $values['shield_image'], $default['shield_image']);?>
+                    </p>
+			</div><br />
+                <?php } ?>
 			
 			<?php echo text_output($label['preferences'], 'h2', 'page-subhead');?>
 			
