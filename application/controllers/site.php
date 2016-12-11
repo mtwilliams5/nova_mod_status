@@ -43,27 +43,22 @@ class Site extends Nova_site {
 			$row = $query->row();
 			$page_id = $row->page_id;
 			
-			$i=1;
-			while ($i<=2) // we're going to set this one both the system admin and basic admin roles by default
-			{
-				// now let's get the data we need from the access_roles table
-				$this->db->from('access_roles');
-				$this->db->where('role_id', $i);
-				$query = $this->db->get();
-				$row = $query->row();
-				// let's get the list of pages this role can already access
-				$access_pages = $row->role_access;
-				// now let's add our page to the list
-				$access_pages .= ','.$page_id;
-				$data = array(
-					'role_access' => $access_pages
-				);
-				// and let's add that back into the database
-				$this->db->where('role_id', $i);
-				$query = $this->db->update('access_roles', $data);
-				
-			$i++;
-			}
+			// now let's get the data we need from the access_roles table
+			$this->db->from('access_roles');
+			$this->db->where('role_id', 1);
+			$query = $this->db->get();
+			$row = $query->row();
+			// let's get the list of pages this role can already access
+			$access_pages = $row->role_access;
+			// now let's add our page to the list
+			$access_pages .= ','.$page_id;
+			$data = array(
+				'role_access' => $access_pages
+			);
+			// and let's add that back into the database
+			$this->db->where('role_id', 1);
+			$query = $this->db->update('access_roles', $data);
+
 		}
 		
 		Auth::check_access();
