@@ -141,7 +141,7 @@
 							<td class="col_30pct slider_control UITheme">
 								<strong><?php echo $label['dorsal'];?>:</strong>
 								<span id="shields_dorsal_amount"><?php echo $shields['dorsal'];?></span>
-								<input type="hidden" name="shields_dorsal_percent" id="shields_dorsal_percent" value="<?php echo $shields['dorsal'];?>" />
+								<input type="hidden" name="dorsal" id="shields_dorsal_percent" value="<?php echo $shields['dorsal'];?>" />
 							</td>
                         </tr>
                         <tr>
@@ -157,7 +157,7 @@
 							<td class="col_30pct slider_control UITheme">
 								<strong><?php echo $label['ventral'];?>:</strong>
 								<span id="shields_ventral_amount"><?php echo $shields['ventral'];?></span>
-								<input type="hidden" name="shields_ventral_percent" id="shields_ventral_percent" value="<?php echo $shields['ventral'];?>" />
+								<input type="hidden" name="ventral" id="shields_ventral_percent" value="<?php echo $shields['ventral'];?>" />
 							</td>
                         </tr>
                         <tr>
@@ -173,7 +173,7 @@
 							<td class="col_30pct slider_control UITheme">
 								<strong><?php echo $label['port'];?>:</strong>
 								<span id="shields_port_amount"><?php echo $shields['port'];?></span>
-								<input type="hidden" name="shields_port_percent" id="shields_port_percent" value="<?php echo $shields['port'];?>" />
+								<input type="hidden" name="port" id="shields_port_percent" value="<?php echo $shields['port'];?>" />
 							</td>
                         </tr>
                         <tr>
@@ -189,7 +189,7 @@
 							<td class="col_30pct slider_control UITheme">
 								<strong><?php echo $label['starboard'];?>:</strong>
 								<span id="shields_starboard_amount"><?php echo $shields['starboard'];?></span>
-								<input type="hidden" name="shields_starboard_percent" id="shields_starboard_percent" value="<?php echo $shields['starboard'];?>" />
+								<input type="hidden" name="starboard" id="shields_starboard_percent" value="<?php echo $shields['starboard'];?>" />
 							</td>
                         </tr>
                         <tr>
@@ -205,7 +205,7 @@
 							<td class="col_30pct slider_control UITheme">
 								<strong><?php echo $label['fore'];?>:</strong>
 								<span id="shields_fore_amount"><?php echo $shields['fore'];?></span>
-								<input type="hidden" name="shields_fore_percent" id="shields_fore_percent" value="<?php echo $shields['fore'];?>" />
+								<input type="hidden" name="fore" id="shields_fore_percent" value="<?php echo $shields['fore'];?>" />
 							</td>
                         </tr>
                         <tr>
@@ -221,7 +221,7 @@
 							<td class="col_30pct slider_control UITheme">
 								<strong><?php echo $label['aft'];?>:</strong>
 								<span id="shields_aft_amount"><?php echo $shields['aft'];?></span>
-								<input type="hidden" name="shields_aft_percent" id="shields_aft_percent" value="<?php echo $shields['aft'];?>" />
+								<input type="hidden" name="aft" id="shields_aft_percent" value="<?php echo $shields['aft'];?>" />
 							</td>
                         </tr>
                         <tr>
