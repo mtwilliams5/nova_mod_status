@@ -2,7 +2,7 @@
 Modification to add mission status and ship status info to the sub-navigation of [Anodyne Production's Nova](http://www.anodyne-productions.com) RPG Management platform. The ship and mission status sections add a customisable ability to include latest post information, current alert status, current stardate, current ship systems status, as well as a dynamically-genrated shield status graphic, utilising styled CSS borders to create the desired effect.
 
 ## Current Version:
-1.0
+1.1
 
 ## Installation Instructions:
 This modification has been designed in such a way to minimise the amount of set-up work required by those who use it. Installation steps are simple:
