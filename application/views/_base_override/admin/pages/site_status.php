@@ -26,6 +26,10 @@
 					<?php echo form_dropdown('mission', $values['mission'], $default['mission']);?>
 				</p>
 				<p>
+					<kbd><?php echo $label['exclude'];?></kbd>
+					<?php echo form_dropdown('exclude', $values['exclude'], $default['exclude']);?>
+				</p>
+				<p>
 					<kbd><?php echo $label['post'];?></kbd>
 					<?php echo form_input($inputs['post']);?>
 				</p>

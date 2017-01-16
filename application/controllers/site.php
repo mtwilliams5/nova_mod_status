@@ -153,6 +153,12 @@ class Site extends Nova_site {
 					'status_type' => 'mission'
 				),
 				array(
+					'status_key' => 'exclude',
+					'status_value' => NULL,
+					'status_label' => 'Exclude Mission From Post Selection',
+					'status_type' => 'mission'
+				),
+				array(
 					'status_key' => 'post',
 					'status_value' => NULL,
 					'status_label' => 'Override Post Selection',
@@ -368,6 +374,29 @@ class Site extends Nova_site {
 				{
 					$insert[] = $this->db->insert($value, $v);
 				}
+			}
+		}
+		
+		// let's check to see if the exclude row is there (update from previous version)
+		$this->db->from('status_fields');
+		$this->db->where('status_key', 'exclude');
+		
+		$query = $this->db->get();
+		
+		if ($query->num_rows() < 1) // this row doesn't exist, so we need to add it
+		{
+			$status_fields = array(
+				array(
+					'status_key' => 'exclude',
+					'status_value' => NULL,
+					'status_label' => 'Exclude Mission From Post Selection',
+					'status_type' => 'mission'
+				));
+			$insert = array();
+			
+			foreach ($status_fields as $k => $v)
+			{
+				$insert[] = $this->db->insert('status_fields', $v);
 			}
 		}
 		
@@ -668,8 +697,21 @@ class Site extends Nova_site {
 				}
 			}
 			
+			$data['values']['exclude'] = array(
+				0 => ucwords(lang('labels_no') .' '. ucfirst(lang('global_mission')))
+			);
+			
+			if ($data['missions'])
+			{
+				foreach($data['missions'] as $key => $value)
+				{
+					$data['values']['exclude'][$key] = $value;
+				}
+			}
+			
 			$data['default']['alert'] = $status['alert'];
 			$data['default']['mission'] = $status['mission'];
+			$data['default']['exclude'] = $status['exclude'];
 			
 			/*
 			|---------------------------------------------------------------
@@ -848,6 +890,7 @@ class Site extends Nova_site {
 			'alert' => $status_label['alert'],
 			'custom' => $status_label['custom'],
 			'dorsal' => $status_label['dorsal'],
+			'exclude' => $status_label['exclude'],
 			'fore' => $status_label['fore'],
 			'header_mission' => ucwords(lang('global_mission') .' '. ucfirst(lang('labels_status'))),
 			'header_sim' => ucwords(lang('global_sim') .' '. ucfirst(lang('labels_status'))),

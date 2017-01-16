@@ -16,9 +16,12 @@
 	if ( $post == false)
 	{
 		// check to see if we're looking only at a set mission
-		if ( $mission !== false || $mission > 0 )
+		if ( $mission != false || $mission > 0 )
 		{ //fetch the last post of that mission
 			$posts = $this->posts_model->get_post_list($mission, 'desc', 1, 0, 'activated');
+		} elseif ( $exclude != false || $exclude > 0 )
+		{ // check to see if we're excluding a mission
+			$posts = $this->posts_model->get_excluded_post_list($exclude, 'desc', 1, 0, 'activated');
 		} else {
 		// fetch the last post
 			$posts = $this->posts_model->get_post_list('', 'desc', 1, 0, 'activated');
