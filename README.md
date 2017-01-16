@@ -2,7 +2,7 @@
 Modification to add mission status and ship status info to the sub-navigation of [Anodyne Production's Nova](http://www.anodyne-productions.com) RPG Management platform. The ship and mission status sections add a customisable ability to include latest post information, current alert status, current stardate, current ship systems status, as well as a dynamically-genrated shield status graphic, utilising styled CSS borders to create the desired effect.
 
 ## Current Version:
-1.1
+1.2
 
 ## Installation Instructions:
 This modification has been designed in such a way to minimise the amount of set-up work required by those who use it. Installation steps are simple:
@@ -44,3 +44,6 @@ Most of the options for the mod are configurable from within the admin page. The
 * By default the borders which create the shield effect around the ship images use a dashed setting. You may wish to change them to dotted (for the Movie-Era style used in The Wrath of Khan's displays) or solid. To do ths, you will need to modify lines 131 and 142 in `/application/views/_base_override/main/pages/ship_status.php`.
 * You may also wish to change the colours used for the borders. They have been set so that 0 is a dark shade of red, 50 is a dark shade of yellow, and 100 is a shade of blue, with the values going through a gradient in-between. These are configurable in lines 14-26 of `/application/views/_base_override/main/pages/ship_status.php`.
 * The default setting for the granular shield status is for the sliders to move in increments of 10. The values in the ship status view file do allow for values to be set in increments of 25. To change this, you will need to modify line 18 of `/application/views/_base_override/admin/js/site_status_js.php` from `step: 10,` to `step: 25,`.
+
+###Updates
+Wherever possible any updates which require additions to the database entries for this mod will be run automatically when you next visit the control panel page for this mod. When that is not possible, it will be noted here.
