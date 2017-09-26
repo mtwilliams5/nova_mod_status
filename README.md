@@ -36,14 +36,14 @@ This modification has been designed in such a way to minimise the amount of set-
 <?php include_once(APPFOLDER . '/views/_base_override/main/pages/ship_status.php'); ?>
   ```
 
-###Ship Images
+### Ship Images
 I have included a number of ship images in with the modification, though the list is by no means exhaustive. These can be found under `/application/assets/images/status/classes`. To make use of any of these, copy the contents of the class folder (i.e. the top and side directories) into `application/assets/images/status/`. A small number of these include the extra images to be used in the image-based basic shield status mode, but the majority do not, and should be used with the granular shield mode, unless you wish to create your own images to use the basic mode. Any ship classes which are not included with the modification files will need to be sourced by the user installing the mod, and added to their site accordingly.
 
-###Advanced Configuration
+### Advanced Configuration
 Most of the options for the mod are configurable from within the admin page. There are two that some may wish to modify that will need edits to the files.
 * By default the borders which create the shield effect around the ship images use a dashed setting. You may wish to change them to dotted (for the Movie-Era style used in The Wrath of Khan's displays) or solid. To do ths, you will need to modify lines 131 and 142 in `/application/views/_base_override/main/pages/ship_status.php`.
 * You may also wish to change the colours used for the borders. They have been set so that 0 is a dark shade of red, 50 is a dark shade of yellow, and 100 is a shade of blue, with the values going through a gradient in-between. These are configurable in lines 14-26 of `/application/views/_base_override/main/pages/ship_status.php`.
 * The default setting for the granular shield status is for the sliders to move in increments of 10. The values in the ship status view file do allow for values to be set in increments of 25. To change this, you will need to modify line 18 of `/application/views/_base_override/admin/js/site_status_js.php` from `step: 10,` to `step: 25,`.
 
-###Updates
+### Updates
 Wherever possible any updates which require additions to the database entries for this mod will be run automatically when you next visit the control panel page for this mod. When that is not possible, it will be noted here.
